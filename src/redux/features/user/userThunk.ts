@@ -22,9 +22,8 @@ export const createUser = createAsyncThunk(
         email,
         password,
       )
-      console.log(userData,'data');
+     
       const user = userData.user
-      console.log(user);
       await updateProfile(user, { displayName: username })
       const userInfoResponse = await fetch(
         "https://ebook-backend-chi.vercel.app/api/v1/auth/signup",
@@ -48,6 +47,7 @@ export const createUser = createAsyncThunk(
         throw new Error("Failed to create user information")
       }
       const userInfo = await userInfoResponse.json()
+      console.log(userInfo);
       return userInfo.data
     } catch (error) {
       const user = auth.currentUser

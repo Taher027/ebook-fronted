@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { Link,  } from "react-router-dom"
+import { Link, useNavigate,  } from "react-router-dom"
 import { createUser } from "../redux/features/user/userThunk"
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
 import toast, { Toaster } from "react-hot-toast"
 import Loader from "../components/ui/Loader"
 
 const SignUp = () => {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const [formData, setFormData] = useState({
     username: "",
@@ -13,17 +14,21 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   })
-  const {  isLoading, isError, error } = useAppSelector(
+  const { user, isLoading, isError, error } = useAppSelector(
     (state) => state.user,
   )
+  console.log(user);
   
 
   useEffect(() => {
+    if(!isLoading && !isError && user.email){
+      navigate("/")
+    }
+   
     if (!isLoading && isError) {
-      console.log("Login failed")
       toast('failed')
     }
-  }, [isLoading, isError, error])
+  }, [user, isLoading, isError, error, navigate])
 
   const handleChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target
