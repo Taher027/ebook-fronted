@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+import Footer from "../../layouts/Footer";
 import { useGetAllBooksQuery } from "../../redux/features/book/bookApi";
 import { useAppSelector } from "../../redux/hooks";
 import Loader from "./Loader";
+import { format } from "date-fns";
 
 
 const ALLBookList = () => {
@@ -54,7 +57,7 @@ const ALLBookList = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200 overflow-y-auto">
-          {data.data.map((book: IBook) => (
+          {data.data.map((book) => (
             <tr key={book._id}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <img
@@ -80,7 +83,7 @@ const ALLBookList = () => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-500">
-                  {format(new Date(book.publicationDate), "MMMM d, yyyy")}
+                {format(new Date(book.publicationDate), "MMMM d, yyyy")}
                 </div>
               </td>
             </tr>
