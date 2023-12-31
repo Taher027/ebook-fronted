@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import api from './api/apiSlice'
 import userReducer from './features/user/userSlice'
+import filterReducer from './features/filter/filterSlice'
 
 const store = configureStore({
   reducer: {
-   
+   filter:filterReducer,
     user: userReducer,
     [api.reducerPath]:api.reducer
   },
