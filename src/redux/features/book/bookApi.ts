@@ -30,15 +30,16 @@ export const bookApi = api.injectEndpoints({
             })
         }),
         editBook:builder.mutation({
-            query:(data)=>({
-                url:`/books/${data.bookId}`,
+            query:({ data, id})=>({
+                
+                url:`/books/edit-book/${id}`,
                 method:"PATCH",
                 body:data
             })
         }),
         deleteBook:builder.mutation({
-            query:(id)=>({
-                url:`/books/${id}`,
+            query:(data)=>({
+                url:`/books/${data.bookId}?userId=${data.userId}`,
                 method:"Delete"
             })
         })

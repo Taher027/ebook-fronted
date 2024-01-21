@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import Footer from "../../layouts/Footer";
 import { useGetAllBooksQuery } from "../../redux/features/book/bookApi";
 import { useAppSelector } from "../../redux/hooks";
 import Loader from "./Loader";
 import { format } from "date-fns";
+import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 
 
 const ALLBookList = () => {
@@ -57,20 +57,20 @@ const ALLBookList = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200 overflow-y-auto">
-          {data.data.map((book) => (
+          {data.data.map((book: { _id: Key | null | undefined; thumbnail: string | undefined; title: string | number | boolean | any[] | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined; author: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; genre: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; publicationDate: string | number | Date; }) => (
             <tr key={book._id}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <img
-                  src={book.thumbnail}
-                  alt={book.title}
+                  src={book?.thumbnail}
+                  alt={book?.title}
                   className="h-full w-10"
                 />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm font-medium text-gray-900">
                   <Link to={`/books/${book._id}`}>
-                    {book.title.length > 75
-                      ? `${book.title.slice(0, 75)}...`
+                    {book?.title?.length > 75
+                      ? `${book?.title?.slice(0, 75)}...`
                       : book.title}
                   </Link>
                 </div>
@@ -91,7 +91,7 @@ const ALLBookList = () => {
         </tbody>
       </table>
       <div className="sticky bottom-0 w-full">
-        <Footer />
+        
       </div>
     </div>
     );

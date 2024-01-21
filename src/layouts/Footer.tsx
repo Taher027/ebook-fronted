@@ -1,12 +1,28 @@
+import { Footer } from 'flowbite-react';
+import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
 
-
-
-const Footer = () => {
+const FooterLaoyout = () => {
   return (
-    <div>
-       <h2>this is footer</h2>
+    <div  >
+     <Footer className='py-5 px-5 sticky bottom-0 bg-blue-950 rounded-none '>
+      <div className="w-full ">
+       
+        <div className="w-full sm:flex sm:items-center sm:justify-between ">
+          <Footer.Copyright className='text-white' href="/" by="Abu Taher Hossain" year={2024} />
+          <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center ">
+            <Footer.Icon className='text-white' href="#" icon={BsFacebook} />
+            <Footer.Icon className='text-white' href="#" icon={BsInstagram} />
+            <Footer.Icon className='text-white' href="#" icon={BsTwitter} />
+            <Footer.Icon className='text-white' href="#" icon={BsGithub} />
+            <Footer.Icon className='text-white' href="#" icon={BsDribbble} />
+          </div>
+        </div>
+      </div>
+    </Footer>
+   
+    
     </div>
   );
 };
 
-export default Footer;
+export default FooterLaoyout;

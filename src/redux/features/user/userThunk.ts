@@ -74,6 +74,7 @@ export const loginUser = createAsyncThunk(
       )
 
       const userInfo = await userInfoResponse.json()
+      
 
       return userInfo.data
     } catch (error) {

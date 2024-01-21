@@ -6,6 +6,9 @@ import SignUp from '../pages/SignUp';
 import Login from '../pages/Login';
 import AllBooks from '../pages/AllBooks';
 import EdditBook from '../pages/EdditBook';
+import BookDetails from '../pages/BookDetails';
+import ReadList from '../pages/ReadList';
+import WishList from '../pages/WishList';
 
 
 const routes = createBrowserRouter([
@@ -27,8 +30,20 @@ const routes = createBrowserRouter([
       },
       
       {
+        path: '/wishlist',
+        element: <WishList/>,
+      },
+      {
+        path: '/readinglist',
+        element:<ReadList/> ,
+      },
+      {
         path: '/all-books',
         element: <AllBooks />,
+      },
+      {
+        path: '/books/:bookId',
+        element: <BookDetails />,
       },
       
       

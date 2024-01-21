@@ -1,9 +1,12 @@
+import HomeBookItems from "../components/HomeBooks/HomeBookItems";
+import HomeBanner from "../components/ui/HomeBanner";
 
 const Home = () => {
   return (
-    <div>
-      <h2>This is Home page</h2>
-    </div>
+    <>
+      <HomeBanner></HomeBanner>
+      <HomeBookItems/>
+    </>
   );
 };
 
