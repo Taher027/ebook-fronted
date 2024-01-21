@@ -31,7 +31,7 @@ const handleOnclose =()=>{
   }
 
   const bookDetails = data.data;
-  const handleAddToWishlist = () => {
+  const handleWishlist = () => {
     if (!user.email) {
       toast("user null");
       return;
@@ -40,7 +40,7 @@ const handleOnclose =()=>{
 
     if (user.wishlist && user.wishlist.includes(bookId)) {
       // If book is already in wishlist
-      const updatedWishlist = user.wishlist.filter((id) => id !== bookId);
+      const updatedWishlist = user?.wishlist?.filter((id) => id !== bookId);
       dispatch(
         addWishlist({
           userId: user._id!,
@@ -62,7 +62,7 @@ const handleOnclose =()=>{
     }
   };
 
-  const handleAddToReadlist = () => {
+  const handleReadingList = () => {
     if (!user.email) {
       toast("user null");
       return;
@@ -111,7 +111,7 @@ const handleOnclose =()=>{
             <div className="w-full flex justify-center gap-5 pt-3">
               <button
                 className="px-4 py-2 bg-blue-500 hover:bg-gray-100 hover:border hover:text-black text-white rounded-md"
-                onClick={handleAddToWishlist}
+                onClick={handleWishlist}
               >
                 {user.wishlist?.includes(bookDetails._id)
                   ? "Remove from wishlist"
@@ -119,7 +119,7 @@ const handleOnclose =()=>{
               </button>
               <button
                 className="px-4 py-2 bg-green-500 hover:bg-gray-100 hover:border hover:text-black text-white rounded-md"
-                onClick={handleAddToReadlist}
+                onClick={handleReadingList}
               >
                 {user.readingList?.includes(bookDetails._id)
                   ? "Remove from Readlist"
