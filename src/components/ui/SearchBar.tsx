@@ -1,4 +1,4 @@
-import { BiSearchAlt } from "react-icons/bi"
+import { BiSearch } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { insertSearchTerm, toggleGenre, togglePublicationYear } from "../../redux/features/filter/filterSlice";
@@ -69,32 +69,35 @@ const SearchBar = () => {
  
 
     return (
-        <div className="w-full flex flex-col items-center justify-center pt-6">
-        {/* <AddBookmark open={open} setOpen={setOpen}  /> */}
-        <h2 className="text-2xl text-gray-600 font-bold">Find books</h2>
-        <div className="w-full flex items-center justify-center px-10">
-          <div className="w-1/2 flex justify-start items-center mt-2">
+        <div className="w-full pt-6 px-10 mb-5 mx-auto">
+        
+        <h2 className="text-2xl text-gray-600 font-bold text-center mb-5">Find Your Books</h2>
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 justify-center items-center ">
+          <div className=" flex justify-center lg:justify-start  items-center mt-2">
             <form
               onSubmit={handleSearch}
-              className="w-[60%] border-2 border-primary-main rounded-full px-8 flex justify-between items-center h-10 text-sm"
+            className="w-[60%] border-2   rounded-full px-8 flex justify-between items-center h-10 text-sm border-indigo-600"
             >
               <input
+              
                 type="text"
                 placeholder="Search by title or author..."
-                className="outline-none w-full bg-transparent border-none"
+                className=" w-full outline-none bg-transparent border-none focus:border-none focus:outline-none   focus:ring-[0px] "
                 value={searchTerm}
                 onChange={handleSearchField}
               />
               <button type="submit">
-                <BiSearchAlt className="h-6 w-6 text-black" />
+                <BiSearch className="h-6 w-6 text-black"/>
               </button>
               <button type="button" onClick={handleClear}>
                 <RxCross2 className="h-6 w-6 text-black" />
               </button>
             </form>
           </div>
-          <div className="w-1/2 flex items-center justify-end mt-4">
-          <Select
+          <div className=" flex items-center justify-end mt-4 ">
+         
+           <Select
+            
             options={genreOptions}
             isClearable
             value={
@@ -102,8 +105,16 @@ const SearchBar = () => {
             }
             onChange={handleGenreChange}
             placeholder="Select Genre"
-            className="rounded-lg px-4 py-2"
+            styles={{
+    control: (baseStyles, state) => ({
+      ...baseStyles,
+      borderColor: state.isFocused ? 'blue' : 'blue',
+      borderWidth:"2px",
+    }),
+  }}
+           
           />
+        
           <Select
             options={yearOptions}
             isClearable
@@ -115,11 +126,12 @@ const SearchBar = () => {
             placeholder="Select Publication Year"
             className="rounded-lg px-4 py-2 basic-single"
             styles={{
-              control: (provided) => ({
-                ...provided,
-                borderWidth: "1px", // Fix double border issue
-              }),
-            }}
+    control: (baseStyles, state) => ({
+      ...baseStyles,
+      borderColor: state.isFocused ? 'blue' : 'blue',
+      borderWidth:"2px",
+    }),
+  }}
           />
 
           <Link

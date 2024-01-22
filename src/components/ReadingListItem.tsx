@@ -13,14 +13,13 @@ const ReadingListItem: React.FC<ListItemProps> = ({
 }) => {
   const dispatch = useAppDispatch()
   const { user } = useAppSelector((state) => state.user)
-  console.log(user,'readinglist' );
 
  
 
   const handleToggleFinish = () => {
-    if (user.finished && user.finished.includes(bookId.toString())) {
+    if (user?.finished && user?.finished?.includes(bookId.toString())) {
       // If book is
-      const updatedList = user.finished.filter((id) => id !== bookId.toString())
+      const updatedList = user?.finished?.filter((id) => id !== bookId.toString())
       dispatch(
         toggleFinished({
           userId: user._id!,

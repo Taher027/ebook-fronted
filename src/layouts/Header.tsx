@@ -10,12 +10,12 @@ import {
   NavbarLink,
   NavbarToggle,
 } from "flowbite-react";
+import userImg from '../assets/user.png';
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { logout } from "../redux/features/user/userSlice";
 import toast from "react-hot-toast";
-
 const Header = () => {
   const dispatch = useAppDispatch();
 
@@ -58,7 +58,7 @@ const Header = () => {
                 label={
                   <Avatar
                     alt="User settings"
-                    img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                    img={userImg}
                     rounded
                   />
                 }

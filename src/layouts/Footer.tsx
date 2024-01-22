@@ -3,8 +3,8 @@ import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-
 
 const FooterLaoyout = () => {
   return (
-    <div  >
-     <Footer className='py-5 px-5 sticky bottom-0 bg-blue-950 rounded-none '>
+    <div  className=''>
+     <Footer className='fixed bottom-0 py-5 px-5  bg-blue-950 rounded-none '>
       <div className="w-full ">
        
         <div className="w-full sm:flex sm:items-center sm:justify-between ">

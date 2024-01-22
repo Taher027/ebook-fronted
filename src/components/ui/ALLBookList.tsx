@@ -20,7 +20,7 @@ const ALLBookList = () => {
         return <Loader/>
     }
     return (
-        <div className="flex flex-col  overflow-auto px-10">
+        <div className="flex flex-col w-full  overflow-auto px-10">
       <table className="min-w-full divide-y divide-gray-200 flex-grow">
         <thead className="bg-gray-50 sticky top-0">
           <tr>
