@@ -4,40 +4,36 @@ import { useAppSelector } from "../../redux/hooks";
 import { useDeleteBookMutation } from "../../redux/features/book/bookApi";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+type DeleteConfirmProps = {
+  visible: boolean;
+  onClose: () => void;
+};
+const DeleteConfirm: React.FC<DeleteConfirmProps> = ({ visible, onClose }) => {
+  const { bookId } = useParams();
+  const { _id: userId } = useAppSelector((state) => state.user.user);
+  const navigate = useNavigate();
 
-const DeleteConfirm = ({ visible, onClose }) => {
- 
-
-  const { bookId } = useParams()
-  const { _id: userId } = useAppSelector((state) => state.user.user)
-  const navigate = useNavigate()
-
-  const [deleteBook, { isError, isSuccess, isLoading, }] =
-    useDeleteBookMutation()
+  const [deleteBook, { isError, isSuccess, isLoading }] =
+    useDeleteBookMutation();
 
   const handleConfirm = () => {
-    deleteBook({ bookId, userId })
-  }
+    deleteBook({ bookId, userId });
+  };
 
   useEffect(() => {
     if (!isLoading && isError) {
-      
-      toast("action can not be done")
+      toast('action can not be done');
     }
-  }, [isError, isLoading])
+  }, [isError, isLoading]);
 
   useEffect(() => {
     if (!isLoading && isSuccess) {
-      toast('Succefully deleted book')
-      navigate("/")
+      toast('Successfully deleted book');
+      navigate('/');
     }
-  }, [isSuccess, isLoading,  navigate])
+  }, [isSuccess, isLoading, navigate]);
 
   if (!visible) return null;
-
-
-
-
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-20">

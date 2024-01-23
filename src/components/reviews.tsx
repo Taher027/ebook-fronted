@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { useAppSelector } from "../redux/hooks"
 import { useAddReviewMutation, useGetAllReviewsQuery } from "../redux/features/review/reviewApi"
 import toast from "react-hot-toast";
+import Loader from "./ui/Loader";
 
 type IReview = {
   _id: string
@@ -44,7 +45,7 @@ const Reviews = () => {
     addReview(data)
       .unwrap()
       .then(() => {
-        toast('success')
+        toast('Review added Successfull')
         refetch()
         setNewReview("")
       })
@@ -52,7 +53,7 @@ const Reviews = () => {
  
 
   if (isLoading) {
-    return <div></div>
+    return <Loader></Loader>
   }
 
   return (

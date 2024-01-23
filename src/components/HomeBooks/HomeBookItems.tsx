@@ -9,6 +9,7 @@ export interface IBook {
     title: string;
     author: string;
     genre: string;
+    description:string;
     publicationDate: string;
     thumbnail: string;
     createdAt: string;

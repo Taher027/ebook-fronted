@@ -3,8 +3,9 @@
 
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import { IBook } from "./HomeBookItems";
 
-const HomeBookItem = ({ book }) => {
+const HomeBookItem = ({ book }:{book:IBook}) => {
   return (
     <Link to={`/books/${book._id}`}>
     

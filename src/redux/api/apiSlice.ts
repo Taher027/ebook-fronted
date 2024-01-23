@@ -6,7 +6,7 @@ const api = createApi({
     baseQuery:fetchBaseQuery({
         baseUrl:"https://ebook-backend-chi.vercel.app/api/v1"
     }),
-    endpoints:(builder) =>({}),
+    endpoints:(_builder) =>({}),
 })
 
 export default api;

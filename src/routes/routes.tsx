@@ -9,6 +9,7 @@ import EdditBook from '../pages/EdditBook';
 import BookDetails from '../pages/BookDetails';
 import ReadList from '../pages/ReadList';
 import WishList from '../pages/WishList';
+import PrivateRoute from './PrivateRoute';
 
 
 const routes = createBrowserRouter([
@@ -22,20 +23,20 @@ const routes = createBrowserRouter([
       },
       {
         path: '/add-book',
-        element: <AddBook />,
+        element: <PrivateRoute><AddBook /></PrivateRoute>,
       },
       {
         path: '/edit-book/:bookId',
-        element: <EdditBook />,
+        element: <PrivateRoute><EdditBook /></PrivateRoute>,
       },
       
       {
         path: '/wishlist',
-        element: <WishList/>,
+        element: <PrivateRoute><WishList/></PrivateRoute>,
       },
       {
         path: '/readinglist',
-        element:<ReadList/> ,
+        element:<PrivateRoute><ReadList/></PrivateRoute> ,
       },
       {
         path: '/all-books',
@@ -43,7 +44,7 @@ const routes = createBrowserRouter([
       },
       {
         path: '/books/:bookId',
-        element: <BookDetails />,
+        element: <PrivateRoute><BookDetails /></PrivateRoute>,
       },
       
       

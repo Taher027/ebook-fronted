@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useEditBookMutation } from "../redux/features/book/bookApi";
 import { useAppSelector } from "../redux/hooks";
+import { IBook } from "./HomeBooks/HomeBookItems";
 
-const EditForm = ({ bookDetails}) => { 
+
+const EditForm = ({ bookDetails }: { bookDetails: IBook }) => { 
 
   const {user} = useAppSelector(state => state.user)
   console.log(user);

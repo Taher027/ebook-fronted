@@ -69,9 +69,7 @@ const Header = () => {
                     {user?.email}
                   </span>
                 </DropdownHeader>
-                <DropdownItem>Dashboard</DropdownItem>
-                <DropdownItem>Settings</DropdownItem>
-                <DropdownItem>Earnings</DropdownItem>
+                
                 <DropdownDivider />
                 <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
               </Dropdown>

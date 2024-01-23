@@ -1,26 +1,31 @@
-import { Link } from "react-router-dom";
-import { useGetAllBooksQuery } from "../../redux/features/book/bookApi";
-import { useAppSelector } from "../../redux/hooks";
-import Loader from "./Loader";
-import { format } from "date-fns";
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 
+import Footer from "../../layouts/Footer"
+import { Link } from "react-router-dom"
+import Loader from "../ui/Loader"
+import { format } from "date-fns"
+import { useAppSelector } from "../../redux/hooks"
+import { useGetAllBooksQuery } from "../../redux/features/book/bookApi"
+import { IBook } from "../HomeBooks/HomeBookItems"
 
-const ALLBookList = () => {
-    const filter = useAppSelector(state => state.filter)
-    const truthyFilter = {
-        ...(filter.searchTerm && {searchTerm:filter.searchTerm}),
-        ...(filter.genre && {genre:filter.genre}),
-        ...(filter.publicationDate &&{publicationDate:filter.publicationDate})
-    }
- console.log(truthyFilter);
-    const {data, isLoading }= useGetAllBooksQuery(truthyFilter,{refetchOnMountOrArgChange:true});
+const BookList = () => {
+  const filter = useAppSelector((state) => state.filter)
 
-    if(isLoading){
-        return <Loader/>
-    }
-    return (
-        <div className="flex flex-col w-full  overflow-auto px-10">
+  const truthyFilter = {
+    ...(filter.searchTerm && { searchTerm: filter.searchTerm }),
+    ...(filter.genre && { genre: filter.genre }),
+    ...(filter.publicationDate && { publicationDate: filter.publicationDate }),
+  }
+
+  const { data, isLoading } = useGetAllBooksQuery(truthyFilter, {
+    refetchOnMountOrArgChange: true,
+  })
+
+  if (isLoading) {
+    return <Loader />
+  }
+
+  return (
+    <div className="flex flex-col  overflow-auto px-10">
       <table className="min-w-full divide-y divide-gray-200 flex-grow">
         <thead className="bg-gray-50 sticky top-0">
           <tr>
@@ -57,20 +62,20 @@ const ALLBookList = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200 overflow-y-auto">
-          {data.data.map((book: { _id: Key | null | undefined; thumbnail: string | undefined; title: string | number | boolean | any[] | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined; author: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; genre: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; publicationDate: string | number | Date; }) => (
+          {data.data.map((book: IBook) => (
             <tr key={book._id}>
               <td className="px-6 py-4 whitespace-nowrap">
                 <img
-                  src={book?.thumbnail}
-                  alt={book?.title}
+                  src={book.thumbnail}
+                  alt={book.title}
                   className="h-full w-10"
                 />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm font-medium text-gray-900">
                   <Link to={`/books/${book._id}`}>
-                    {book?.title?.length > 75
-                      ? `${book?.title?.slice(0, 75)}...`
+                    {book.title.length > 75
+                      ? `${book.title.slice(0, 75)}...`
                       : book.title}
                   </Link>
                 </div>
@@ -83,7 +88,7 @@ const ALLBookList = () => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-500">
-                {format(new Date(book.publicationDate), "MMMM d, yyyy")}
+                  {format(new Date(book.publicationDate), "MMMM d, yyyy")}
                 </div>
               </td>
             </tr>
@@ -91,10 +96,10 @@ const ALLBookList = () => {
         </tbody>
       </table>
       <div className="sticky bottom-0 w-full">
-        
+        <Footer />
       </div>
     </div>
-    );
-};
+  )
+}
 
-export default ALLBookList;
+export default BookList
