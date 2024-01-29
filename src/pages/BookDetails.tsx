@@ -1,4 +1,3 @@
-
 import { SlCalender } from "react-icons/sl";
 import { BiBookBookmark } from "react-icons/bi";
 import { Link, useParams } from "react-router-dom";
@@ -13,12 +12,10 @@ import { useState } from "react";
 import { Button } from "flowbite-react";
 
 const BookDetails = () => {
-
-const [showMyModal, setShowMyModal] = useState(false);
-const handleOnclose =()=>{
-  setShowMyModal(false)
-}
-
+  const [showMyModal, setShowMyModal] = useState(false);
+  const handleOnclose = () => {
+    setShowMyModal(false);
+  };
 
   const dispatch = useAppDispatch();
 
@@ -96,19 +93,16 @@ const handleOnclose =()=>{
   return (
     <>
       <div>
-        <div
-          className="w-full  flex justify-between px-20 pt-12"
-          style={{ height: `calc(100vh - ${78}px)` }}
-        >
+        <div className="w-full  flex px-3 md:px-6 lg:px-10 pt-12">
           <div className="w-1/3">
             <div className="w-full">
               <img
-                className="w-full h-[35rem]"
+                className="w-full h-auto"
                 src={bookDetails.thumbnail}
                 alt=""
               />
             </div>
-            <div className="w-full flex justify-center gap-5 pt-3">
+            <div className="w-full flex flex-col mt-5 md:mt-0 md:flex-row justify-center gap-5 pt-3">
               <button
                 className="px-4 py-2 bg-blue-500 hover:bg-gray-100 hover:border hover:text-black text-white rounded-md"
                 onClick={handleWishlist}
@@ -127,29 +121,43 @@ const handleOnclose =()=>{
               </button>
             </div>
           </div>
-          <div className="w-2/3 flex flex-col justify-between h-[35rem] px-5">
+          <div className="w-2/3 flex flex-col justify-between h-[500px] px-5">
             <div>
               <h2 className="text-3xl font-bold text-gray-700 text-center ">
-                
                 {bookDetails.title}
               </h2>
               <p className="text-center font-bold text-gray-500 pt-2">
                 By {bookDetails.author}
               </p>
-              <p className="h-[250px] w-full rounded-md border p-4 mt-5 font-serif">
+              <p className="h-[250px] w-full rounded-md overflow-auto border p-4 mt-5 font-serif">
                 {bookDetails.description}
               </p>
               {user.email && (
-                <div className="pt-12 flex gap-5">
-                  
-                  <Link to={`/edit-book/${bookId}`}> <Button className="transition ease-in-out delay-150 hover:scale-105 duration-100"  size="xs">Edit</Button></Link>
-                  <Button className="transition ease-in-out delay-150 hover:scale-105 duration-100" onClick={()=>setShowMyModal(true)} size="xs">Delete</Button>
-                  <DeleteConfirm visible={showMyModal} onClose={handleOnclose} />
+                <div className="pt-12 flex gap-5 -mt-5 md:mt-0">
+                  <Link to={`/edit-book/${bookId}`}>
+                    {" "}
+                    <Button
+                      className="transition ease-in-out delay-150 hover:scale-105 duration-100"
+                      size="xs"
+                    >
+                      Edit
+                    </Button>
+                  </Link>
+                  <Button
+                    className="transition ease-in-out delay-150 hover:scale-105 duration-100"
+                    onClick={() => setShowMyModal(true)}
+                    size="xs"
+                  >
+                    Delete
+                  </Button>
+                  <DeleteConfirm
+                    visible={showMyModal}
+                    onClose={handleOnclose}
+                  />
                 </div>
               )}
             </div>
-            <div className="flex w-full justify-evenly text-gray-600 font-semibold">
-              
+            <div className=" w-full flex flex-col  md:flex-row mt-4 justify-evenly text-gray-600 font-semibold">
               <p className="flex items-center gap-2">
                 <SlCalender />
                 <span>Publication Date: {bookDetails.publicationDate}</span>
@@ -160,10 +168,8 @@ const handleOnclose =()=>{
             </div>
           </div>
         </div>
-        <div>
-         
-            <Reviews />
-          
+        <div className=" -mt-10 md:mt-0">
+          <Reviews />
         </div>
       </div>
     </>
