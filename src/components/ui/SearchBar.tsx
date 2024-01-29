@@ -7,7 +7,6 @@ import {
   togglePublicationYear,
 } from "../../redux/features/filter/filterSlice";
 import Select from "react-select";
-import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const { searchTerm, genre, publicationDate } = useAppSelector(
@@ -97,42 +96,47 @@ const SearchBar = () => {
             </button>
           </form>
         </div>
-        <div className=" flex items-center justify-end mt-4 ">
-          <Select
-            options={genreOptions}
-            isClearable
-            value={
-              genreOptions.find((option) => option.value === genre) || null
-            }
-            onChange={handleGenreChange}
-            placeholder="Select Genre"
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                borderColor: state.isFocused ? "blue" : "blue",
-                borderWidth: "2px",
-              }),
-            }}
-          />
+        <div className=" flex items-center justify-center lg:justify-end mt-4 ">
+          <div>
+            <Select
+              options={genreOptions}
+              isClearable
+              value={
+                genreOptions.find((option) => option.value === genre) || null
+              }
+              onChange={handleGenreChange}
+              placeholder="Select Genre"
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: state.isFocused ? "blue" : "blue",
+                  borderWidth: "2px",
+                }),
+              }}
+            />
+          </div>
 
-          <Select
-            options={yearOptions}
-            isClearable
-            value={
-              yearOptions.find((option) => option.value === publicationDate) ||
-              null
-            }
-            onChange={handlePublicationYearChange}
-            placeholder="Select Publication Year"
-            className="rounded-lg px-4 py-2 basic-single"
-            styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                borderColor: state.isFocused ? "blue" : "blue",
-                borderWidth: "2px",
-              }),
-            }}
-          />
+          <div>
+            <Select
+              options={yearOptions}
+              isClearable
+              value={
+                yearOptions.find(
+                  (option) => option.value === publicationDate
+                ) || null
+              }
+              onChange={handlePublicationYearChange}
+              placeholder="Select Publication Year"
+              className="rounded-lg px-4 py-2 basic-single"
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: state.isFocused ? "blue" : "blue",
+                  borderWidth: "2px",
+                }),
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
