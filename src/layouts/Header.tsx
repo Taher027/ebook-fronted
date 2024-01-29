@@ -16,6 +16,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { logout } from "../redux/features/user/userSlice";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import Container from "./Container";
 const Header = () => {
   const dispatch = useAppDispatch();
 
@@ -30,51 +32,43 @@ const Header = () => {
   };
 
   return (
-    <div className="px-[5%] bg-blue-950">
-      <Navbar fluid className="bg-blue-950 text-white">
+    <div className=" bg-blue-950">
+      <Container>
+        <Navbar  className="bg-blue-950 text-white">
         <NavbarBrand href="/">
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white -skew-x-6">
             E-BOOK
           </span>
         </NavbarBrand>
         <div className="flex md:order-2">
-          {!user?.email && (
-            <>
-              <NavbarCollapse>
-                <NavbarLink className="text-white" href="/login">
+           {!user?.email && (<>
+                <div className="flex gap-2 justify-center items-center">
+                  <Link className="text-white" to="/login">
                   Login
-                </NavbarLink>
-                <NavbarLink className="text-white" href="signup">
+                </Link>
+                <Link className="text-white" to="signup">
                   Sign Up
-                </NavbarLink>
-              </NavbarCollapse>
-            </>
-          )}
-          {user?.email && (
-            <>
-              <Dropdown
-                arrowIcon={false}
-                inline
-                label={
-                  <Avatar
-                    alt="User settings"
-                    img={userImg}
-                    rounded
-                  />
-                }
-              >
-                <DropdownHeader>
-                  <span className="block text-sm">{user?.username}</span>
-                  <span className="block truncate text-sm font-medium">
-                    {user?.email}
-                  </span>
-                </DropdownHeader>
-                
-                <DropdownDivider />
-                <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
-              </Dropdown>
-            </>
-          )}
+                </Link>
+                </div>
+              </>)}
+          {
+            user?.email && (<>
+            <Dropdown
+          arrowIcon={false}
+          inline
+          label={
+            <Avatar alt="User settings" img={userImg} rounded />
+          }
+        >
+           
+          
+          
+           <DropdownItem onClick={handleLogout}>Log out</DropdownItem>
+          
+         
+        </Dropdown>
+            </>)
+        }
           <NavbarToggle />
         </div>
         <NavbarCollapse>
@@ -96,6 +90,7 @@ const Header = () => {
           )}
         </NavbarCollapse>
       </Navbar>
+      </Container>
     </div>
   );
 };
