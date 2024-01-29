@@ -23,7 +23,7 @@ function App() {
   });
 
   return (
-    <div className="w-full mx-auto">
+    <div className="mx-auto">
       <MainLayout />
       <Toaster />
     </div>

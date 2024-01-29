@@ -1,33 +1,31 @@
-
-import Footer from "../../layouts/Footer"
-import { Link } from "react-router-dom"
-import Loader from "../ui/Loader"
-import { format } from "date-fns"
-import { useAppSelector } from "../../redux/hooks"
-import { useGetAllBooksQuery } from "../../redux/features/book/bookApi"
-import { IBook } from "../HomeBooks/HomeBookItems"
+import { Link } from "react-router-dom";
+import Loader from "../ui/Loader";
+import { format } from "date-fns";
+import { useAppSelector } from "../../redux/hooks";
+import { useGetAllBooksQuery } from "../../redux/features/book/bookApi";
+import { IBook } from "../HomeBooks/HomeBookItems";
 
 const BookList = () => {
-  const filter = useAppSelector((state) => state.filter)
+  const filter = useAppSelector((state) => state.filter);
 
   const truthyFilter = {
     ...(filter.searchTerm && { searchTerm: filter.searchTerm }),
     ...(filter.genre && { genre: filter.genre }),
     ...(filter.publicationDate && { publicationDate: filter.publicationDate }),
-  }
+  };
 
   const { data, isLoading } = useGetAllBooksQuery(truthyFilter, {
     refetchOnMountOrArgChange: true,
-  })
+  });
 
   if (isLoading) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
     <div className="flex flex-col  overflow-auto px-10">
       <table className="min-w-full divide-y divide-gray-200 flex-grow">
-        <thead className="bg-gray-50 sticky top-0">
+        <thead className="bg-gray-50 ">
           <tr>
             <th
               scope="col"
@@ -95,11 +93,8 @@ const BookList = () => {
           ))}
         </tbody>
       </table>
-      <div className="sticky bottom-0 w-full">
-        <Footer />
-      </div>
     </div>
-  )
-}
+  );
+};
 
-export default BookList
+export default BookList;
